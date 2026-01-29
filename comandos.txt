@@ -1,0 +1,41 @@
+ng new client
+//crear el proyecto
+
+ng add @angular/material
+//agregar angular material
+
+npm i ngx-flexible-layout
+//Orden del layout
+
+npm i angular2-notifications
+//NOTIFICATIONS
+
+npm i @angular/material-moment-adapter
+npm i moment --save
+allowCommonJsDependencies options in build options in angular.json file
+{
+    "projects": {
+        "projectName": { 
+	    "architect": { 
+	        "build": {
+		    "options": {
+		        "allowedCommonJsDependencies": [
+			    "moment"
+			 ],
+		    }
+		}
+	    }
+	}
+    }
+}
+//Para las fechas son los formatos
+
+npm i ngx-cookie-service --save
+ng g interceptor http-header-interceptor
+ng g guard user-guard
+//Autentificacion JWT
+
+npm install ngxsmk-datepicker
+//time picker
+
+//npm i ngx-mat-timepicker@17.1.0 --force
