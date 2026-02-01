@@ -1,0 +1,30 @@
+@use '@angular/material' as mat;
+
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+mat-sidenav {
+    width: 300px;
+}
+
+mat-sidenav-container {
+    height: 100%;
+}
+
+mat-sidenav-content {
+    margin: 0px;
+    padding: 10px;
+    background-color: var(--mat-sys-surface-container-highest);
+}
+
+.content {
+    padding: 10px;
+}
+
+.sidenav {
+  @include mat.sidenav-overrides((
+    container-shape: 0px
+  ));
+}

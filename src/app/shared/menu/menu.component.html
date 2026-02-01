@@ -1,0 +1,16 @@
+<mat-nav-list>
+    <div class="profile-card">
+        <img src="assets/images/user-profile/104.jpg" alt="user" class="profile-img">
+    </div>
+
+    <mat-divider></mat-divider>
+    <h2>Menu Principal</h2>
+    <mat-divider></mat-divider>
+    
+    <mat-nav-list>
+        @for (item of navItems; track item.id) {
+            <app-menu-item [item]="item" [depth]="1"></app-menu-item>
+        }
+    </mat-nav-list>
+    
+</mat-nav-list>

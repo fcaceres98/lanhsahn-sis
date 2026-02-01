@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+.routeIcon {
+    margin: 0px;
+    padding: 0px;
+    margin-right: 10px;
+}
+
+.sidenav-item {
+    @include mat.list-overrides((
+        active-indicator-shape: 0px,
+    ));
+}

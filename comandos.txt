@@ -1,6 +1,9 @@
 ng new client
 //crear el proyecto
 
+npm install @angular/animations@
+// animaciones
+
 ng add @angular/material
 //agregar angular material
 

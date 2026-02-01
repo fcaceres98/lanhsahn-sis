@@ -1,0 +1,21 @@
+mat-icon {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+h2 {
+    margin: 0px;
+    padding: 0px;
+
+    text-align: center;
+}
+
+.profile-card {
+    text-align: center;
+    padding: 5px 0px;
+}
+.profile-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}

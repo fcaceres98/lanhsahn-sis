@@ -1,0 +1,13 @@
+<app-header (toggleMenu)="sideBarToogler($event)" (toogleThemeMode)="switchTheme($event)"></app-header>
+
+<mat-sidenav-container class="sidenav">
+    <mat-sidenav #appDrawer mode='over' [opened]="sideBarOpen" (closed)="closeSideBar()">
+        <app-menu></app-menu>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<app-footer></app-footer>

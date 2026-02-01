@@ -1,0 +1,34 @@
+<mat-toolbar class="primary-toolbar">
+    <mat-toolbar-row fxLayoutAlign="space-between center">
+        <div fxLayoutAlign="center center" fxLayoutGap="5px">
+            <button matMiniFab (click)="toogleSideBar()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <div fxHide.xs class="logo-container"></div>
+            <span>FACT365</span>
+        </div>
+        <div fxLayoutAlign="center center">
+            <button mat-fab extended color="primary" [matMenuTriggerFor]="menu">
+                <mat-icon>person</mat-icon>
+                <span>{{user.user}}</span>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openUserProfile()">
+                    <mat-icon>person</mat-icon>
+                    My Perfil
+                </button>
+                <button mat-menu-item>
+                    <mat-slide-toggle color="primary" [checked]="isChecked" (change)="changeThemeMode($event)">Dark Mode</mat-slide-toggle>
+                </button>
+                <button mat-menu-item (click)="ayuda()">
+                    <mat-icon>help_outline</mat-icon>
+                    Ayuda
+                </button>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    Cerrar Sesión
+                </button>
+            </mat-menu>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,21 @@
+@if (item.enabled) {
+<ng-container>
+    <mat-list-item class="sidenav-item"
+        [ngStyle]="{'height':'36px', 'padding-left': (depth * 12) + 'px'}"
+        (click)="onItemSelected(item)">   
+        
+        <mat-icon matListItemIcon class="routeIcon">{{item.iconName}}</mat-icon>
+        <div matListItemTitle>{{item.displayName}}</div>
+        <span matListItemMeta [@indicatorRotate]="expanded ? 'expanded': 'collapsed'" *ngIf="item.children && item.children.length">
+            <mat-icon>expand_more</mat-icon>
+        </span>
+    </mat-list-item>
+    @if (expanded) {
+        <div>
+            @for (child of item.children; track $index) {
+                <app-menu-item [item]="child" [depth]="depth+1"></app-menu-item>
+            }
+        </div>
+    }
+</ng-container>
+}

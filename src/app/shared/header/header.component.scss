@@ -1,0 +1,22 @@
+@use '@angular/material' as mat;
+
+.primary-toolbar {
+    @include mat.toolbar-overrides((
+        container-background-color: var(--mat-sys-primary),
+        container-text-color: var(--mat-sys-on-primary),
+    ));
+}
+
+.logo-container {
+    height: 45px;
+    width: 45px;
+
+    background-color: white;
+    border-radius: 50%;
+
+    background-image: url('/assets/images/logo.png');
+    background-size: 40px 40px;
+    background-position: center;
+
+    border: 1px solid black;
+}
