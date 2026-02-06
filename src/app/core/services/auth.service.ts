@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, firstValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { environment } from '@src/app/core/environments/environment';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -23,21 +23,22 @@ export interface LocalAuth {
 })
 export class AuthService {
 
+  private STORAGE_KEY = '**LANHSA@JWT**';
   API_URL = environment.apiUrl;
   PREFIX = 'auth/';
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar, private router: Router) { }
 
   getLocalAuth(): LocalAuth {
-    return JSON.parse(localStorage.getItem('**LANHSA@JWT**') || '-1');
+    return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '-1');
   }
 
   setLocalAuth(localauth: LocalAuth): void {
-    localStorage.setItem('**LANHSA@JWT**', JSON.stringify(localauth));
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(localauth));
   }
 
   destroyLocalAuth(): void {
-    localStorage.removeItem('**LANHSA@JWT**');
+    localStorage.removeItem(this.STORAGE_KEY);
   }
 
   async isLogged(): Promise<LocalAuth> {

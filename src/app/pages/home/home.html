@@ -1,16 +1,37 @@
-<mat-card class="example-card" appearance="outlined">
-    <mat-card-header>
-        <mat-card-title>Chihuahua</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <p>home works! Hola</p>
-        <p>{{longText}}</p>
+<mat-card class="home-container">
+    <mat-card-content class="bg-container">
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between start" fxLayoutAlign.xs="center center">
+
+            <h1 class="home-title">Bienvenido! Los buenos viajes no se olvidan</h1>
+
+            <mat-card class="list-container">
+                <mat-card-content>
+                    <mat-list role="list">
+                        <mat-list-item role="listitem">
+                            <div fxLayout="row" fxLayout.xs="column">
+                                <span class="list-item-label">Nombre:</span>
+                                <label for="">Fausto Fernandez</label>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem">
+                            <div fxLayout="row" fxLayout.xs="column">
+                                <span class="list-item-label">Correo:</span>
+                                <label for="">fausto.fernandez@example.com</label>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem">
+                            <div fxLayout="row" fxLayout.xs="column">
+                                <span class="list-item-label">Sucursal:</span>
+                                <label for="">Aeropuerto Goloson</label>
+                            </div>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+
+
+        </div>
+
     </mat-card-content>
-    <mat-card-footer class="example-card-footer">
-        <mat-chip-set aria-label="Chihuahua traits">
-            <mat-chip>charming</mat-chip>
-            <mat-chip>graceful</mat-chip>
-            <mat-chip>sassy</mat-chip>
-        </mat-chip-set>
-    </mat-card-footer>
 </mat-card>

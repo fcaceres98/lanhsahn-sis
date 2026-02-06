@@ -1,0 +1,43 @@
+mat-card.home-container {
+  height: calc(100vh - 64px - 56px);
+  overflow: hidden;
+}
+
+mat-card.list-container {
+    border-radius: 10px;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+mat-card-content.bg-container {
+    background: url('/assets/images/bg-home.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100%;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.home-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin: 10px 0 20px 0;
+    text-align: center;
+}
+
+mat-list-item {
+    display: flex;
+    align-items: center;
+}
+
+.list-item-label {
+    font-weight: bold;
+    min-width: 80px;
+    text-align: left;
+    display: inline-block;
+}
+.list-item-text {
+    text-align: left;
+    display: inline-block;
+}

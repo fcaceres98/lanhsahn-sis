@@ -36,6 +36,12 @@ export class MenuComponent implements OnInit {
                 route: "control-panel/home",
                 enabled: true
             }, {
+                id: "dashboard",
+                displayName: "Tablero",
+                iconName: "dashboard",
+                route: "control-panel/dashboard",
+                enabled: true
+            }, {
                 id: "settings",
                 displayName: "Opciones",
                 iconName: "settings",
