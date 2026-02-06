@@ -29,6 +29,12 @@ mat-card-content.bg-container {
 mat-list-item {
     display: flex;
     align-items: center;
+
+    border-bottom: 1px solid;
+
+    &:last-child {
+        border-bottom: none;
+    }
 }
 
 .list-item-label {
