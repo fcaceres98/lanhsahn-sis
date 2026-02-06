@@ -42,3 +42,6 @@ npm install ngxsmk-datepicker
 //time picker
 
 //npm i ngx-mat-timepicker@17.1.0 --force
+
+npm i chart.js
+//Los graficos
