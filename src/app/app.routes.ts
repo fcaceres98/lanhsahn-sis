@@ -5,13 +5,14 @@ import { Layout } from './pages/layout/layout';
 import { Home } from './pages/home/home';
 import { Dashboard } from './pages/dashboard/dashboard';
 
+import { Branches } from './pages/options/branches/branches';
+
 export const routes: Routes = [
     {
         path: '',
         redirectTo: '/control-panel',
         pathMatch: 'full'
-    },
-    {
+    }, {
         path: 'control-panel',
         component: Layout,
         children: [
@@ -24,7 +25,18 @@ export const routes: Routes = [
             }, {
                 path: 'dashboard',
                 component: Dashboard
-            },{
+            }, {
+                path: 'options',
+                children: [
+                    {
+                        path: '',
+                        component: NotFound
+                    }, {
+                        path: 'branches',
+                        component: Branches
+                    }
+                ]
+            }, {
                 path: '404',
                 component: NotFound
             }, {

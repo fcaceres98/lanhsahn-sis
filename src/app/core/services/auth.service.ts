@@ -30,7 +30,7 @@ export class AuthService {
   constructor(private http: HttpClient, private snackBar: MatSnackBar, private router: Router) { }
 
   getLocalAuth(): LocalAuth {
-    return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '-1');
+    return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '{}');
   }
 
   setLocalAuth(localauth: LocalAuth): void {

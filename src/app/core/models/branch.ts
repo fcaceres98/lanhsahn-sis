@@ -3,7 +3,7 @@ export interface Branch {
     name?: string;
     direction?: string;
     telephone?: string;
-    status?: string;
+    status?: number;
     created_at?: string|Date;
     updated_at?: string|Date;
 }
