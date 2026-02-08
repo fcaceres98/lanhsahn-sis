@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '@src/app/core/environments/environment';
 
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationsService, NotificationType } from 'angular2-notifications';
 
 export interface LocalAuth {
     res?: boolean;
@@ -27,7 +27,11 @@ export class AuthService {
     API_URL = environment.apiUrl;
     PREFIX = 'auth/';
 
-    constructor(private http: HttpClient, private snackBar: MatSnackBar, private router: Router) { }
+    constructor(
+        private http: HttpClient,
+        private router: Router,
+        private notifications: NotificationsService
+    ) { }
 
     getLocalAuth(): LocalAuth {
         return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || JSON.stringify({res: false, token: 'undefined', message: 'No local auth found'}) );
@@ -72,5 +76,22 @@ export class AuthService {
 
     goToLogin(): void {
         this.router.navigate( ['/'] );
+    }
+
+    async verifyLogin(): Promise<void> {
+        await this.verifySession().then(
+            res => {
+                if (!res.res) {
+                    this.destroyLocalAuth();
+                    this.goToLogin();
+                }
+            }, err => {
+                this.notifications.create("Error", JSON.stringify(err.message, null, 2), NotificationType.Error, {
+                    timeOut: 5000,
+                    showProgressBar: true,
+                    clickToClose: true,
+                });
+            }
+        );
     }
 }

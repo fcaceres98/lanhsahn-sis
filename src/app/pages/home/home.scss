@@ -29,11 +29,27 @@ mat-card-content.bg-container {
 mat-list-item {
     display: flex;
     align-items: center;
-
+    height: auto !important; // Permite que crezca
+    min-height: 48px; // Altura mínima
     border-bottom: 1px solid;
 
     &:last-child {
         border-bottom: none;
+    }
+
+    .mdc-list-item__content {
+        height: auto !important;
+        padding: 12px 16px;
+        align-items: flex-start;
+    }
+
+    .user-name-label {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        white-space: normal;
+        max-width: 250px; /* Ajusta según tu diseño */
+        line-height: 1.4;
     }
 }
 

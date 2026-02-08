@@ -11,19 +11,19 @@
                         <mat-list-item role="listitem">
                             <div fxLayout="row" fxLayout.xs="column">
                                 <span class="list-item-label">Nombre:</span>
-                                <label for="">Fausto Fernandez</label>
+                                <label class="user-name-label">{{user().name}}</label>
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem">
                             <div fxLayout="row" fxLayout.xs="column">
                                 <span class="list-item-label">Correo:</span>
-                                <label for="">fausto.fernandez@example.com</label>
+                                <label>{{user().email}}</label>
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem">
                             <div fxLayout="row" fxLayout.xs="column">
                                 <span class="list-item-label">Sucursal:</span>
-                                <label for="">Aeropuerto Goloson</label>
+                                <label>{{user().branch?.name}}</label>
                             </div>
                         </mat-list-item>
                     </mat-list>

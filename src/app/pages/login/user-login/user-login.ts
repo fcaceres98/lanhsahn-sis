@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 
 import { FlexLayoutModule } from 'ngx-flexible-layout';
-import { SimpleNotificationsModule, NotificationsService, NotificationType } from 'angular2-notifications';
+import { NotificationsService, NotificationType } from 'angular2-notifications';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -18,7 +18,6 @@ import { AuthService } from '@src/app/core/services/auth.service';
     selector: 'app-user-login',
     imports: [
         FlexLayoutModule,
-        SimpleNotificationsModule,
         ReactiveFormsModule,
 
         MatCardModule,
