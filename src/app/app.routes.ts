@@ -1,17 +1,23 @@
 import { Routes } from '@angular/router';
 import { NotFound } from './shared/not-found/not-found';
 import { NotFoundRoot } from './shared/not-found-root/not-found-root';
+
+import { UserLogin } from './pages/login/user-login/user-login';
+
 import { Layout } from './pages/layout/layout';
 import { Home } from './pages/home/home';
 import { Dashboard } from './pages/dashboard/dashboard';
 
-import { Branches } from './pages/options/branches/branches';
+import { ListBranches } from './pages/options/branches/list-branches/list-branches';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: '/control-panel',
+        redirectTo: '/login',
         pathMatch: 'full'
+    }, {
+        path: 'login',
+        component: UserLogin,
     }, {
         path: 'control-panel',
         component: Layout,
@@ -33,7 +39,7 @@ export const routes: Routes = [
                         component: NotFound
                     }, {
                         path: 'branches',
-                        component: Branches
+                        component: ListBranches
                     }
                 ]
             }, {

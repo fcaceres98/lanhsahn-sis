@@ -21,7 +21,7 @@ import { BranchesService } from '@src/app/core/services/branches.service';
 import { AuthService, LocalAuth } from '@src/app/core/services/auth.service';
 
 @Component({
-    selector: 'app-branches',
+    selector: 'app-list-branches',
     imports: [
         FlexLayoutModule,
         SimpleNotificationsModule,
@@ -38,10 +38,10 @@ import { AuthService, LocalAuth } from '@src/app/core/services/auth.service';
         MatMenuModule,
         MatProgressSpinnerModule
     ],
-    templateUrl: './branches.html',
-    styleUrl: './branches.scss',
+    templateUrl: './list-branches.html',
+    styleUrl: './list-branches.scss',
 })
-export class Branches implements OnInit {
+export class ListBranches implements OnInit {
 
     localAuth!: LocalAuth;
     columnDisplay = 'Nombre';
@@ -50,25 +50,9 @@ export class Branches implements OnInit {
 
     isLoading = signal<boolean>(true);
     dataSource: BranchData = {
-        current_page: 0,
         data: [],
-        first_page_url: '',
-        from: 0,
-        last_page: 0,
-        last_page_url: '',
-        links: {
-            url: '',
-            label: '',
-            active: false
-        },
-        next_page_url: '',
-        path: '',
         per_page: 0,
-        prev_page_url: '',
-        to: 0,
-        total: 0,
-        page: 0,
-        pageSize: 0
+        total: 0
     };
     columnsToDisplay: string[] = ['id', 'name', 'direction', 'telephone', 'options'];
     pageEvent: PageEvent = new PageEvent();

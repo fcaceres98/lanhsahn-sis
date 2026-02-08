@@ -7,88 +7,70 @@ import { environment } from '@src/app/core/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface LocalAuth {
-  res?: boolean;
-  token?: string;
-  token_type?: String;
-  idU?: string;
-  idG?: string;
-  idS?: string;
-  lang?: string;
-  theme?: string;
-  message: string;
+    res?: boolean;
+    token?: string;
+    token_type?: String;
+    expires_at?: string;
+    idU?: string;
+    idG?: string;
+    idS?: string;
+    lang?: string;
+    theme?: string;
+    message: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
+    private STORAGE_KEY = '**LANHSA@BT**';
+    API_URL = environment.apiUrl;
+    PREFIX = 'auth/';
 
-  private STORAGE_KEY = '**LANHSA@JWT**';
-  API_URL = environment.apiUrl;
-  PREFIX = 'auth/';
+    constructor(private http: HttpClient, private snackBar: MatSnackBar, private router: Router) { }
 
-  constructor(private http: HttpClient, private snackBar: MatSnackBar, private router: Router) { }
+    getLocalAuth(): LocalAuth {
+        return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || JSON.stringify({res: false, token: 'undefined', message: 'No local auth found'}) );
+    }
 
-  getLocalAuth(): LocalAuth {
-    return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '{}');
-  }
+    setLocalAuth(localauth: LocalAuth): void {
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(localauth));
+    }
 
-  setLocalAuth(localauth: LocalAuth): void {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(localauth));
-  }
+    destroyLocalAuth(): void {
+        localStorage.removeItem(this.STORAGE_KEY);
+    }
 
-  destroyLocalAuth(): void {
-    localStorage.removeItem(this.STORAGE_KEY);
-  }
+    async isLogged(): Promise<LocalAuth> {
+        const source = this.http.get<LocalAuth>(this.API_URL + this.PREFIX + 'is-logged/');
+        const result = await firstValueFrom(source);
+        return result;
+    }
 
-  async isLogged(): Promise<LocalAuth> {
-    const source = this.http.get<LocalAuth>(this.API_URL + this.PREFIX + 'islogged/');
-    const result = await firstValueFrom(source);
-    return result;
-  }
-  
-  async login(data: any): Promise<LocalAuth> {
-    const source = this.http.post<LocalAuth>(this.API_URL + this.PREFIX + 'login/', data);
-    const result = await firstValueFrom(source);
-    return result;
-  }
+    async login(data: any): Promise<LocalAuth> {
+        const source = this.http.post<LocalAuth>(this.API_URL + this.PREFIX + 'login/', data);
+        const result = await firstValueFrom(source);
+        this.setLocalAuth(result);
+        return result;
+    }
 
-  async logout(): Promise<LocalAuth> {
-    const source = this.http.get<LocalAuth>(this.API_URL + this.PREFIX + 'logout/');
-    const result = await firstValueFrom(source);
-    return result;
-  }
+    async logout(): Promise<LocalAuth> {
+        const source = this.http.get<LocalAuth>(this.API_URL + this.PREFIX + 'logout/');
+        const result = await firstValueFrom(source);
+        return result;
+    }
 
-  async verifySession(): Promise<void> {
-    await this.isLogged().then(
-      res => {
-        if (res.message === 'Unauthenticated') {
-          this.goToLogin();
-        } else {
-          if (!res.res) {
-            this.goToLogin();
-          }
+    async verifySession(): Promise<LocalAuth> {
+        const auth = this.getLocalAuth();
+        if (!auth.token) {
+            return { res: false, message: 'No token found' };
         }
-      }, err => {
-        const snackBarRef = this.snackBar.open('Ocurrio un problema. ' + err.message, 'Cerrar', {
-          duration: 3000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'center',
-          panelClass: ['error-snackbar'],
-        });
-        snackBarRef.afterDismissed().subscribe(() => {
-          setTimeout(() => {
-          }, 0);
-        });
-        snackBarRef.onAction().subscribe(() => {
-        });
+        const source = this.http.get<LocalAuth>(this.API_URL + this.PREFIX + 'verify-session/?token=' + auth.token);
+        const result = await firstValueFrom(source);
+        return result;
+    }
 
-        this.goToLogin();
-      }
-    )
-  }
-
-  goToLogin(): void {
-    this.router.navigate( ['/'] );
-  }
+    goToLogin(): void {
+        this.router.navigate( ['/'] );
+    }
 }
