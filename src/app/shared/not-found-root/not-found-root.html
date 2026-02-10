@@ -1,1 +1,17 @@
-<p>not-found-root works!</p>
+<div class="not-found-container" [@fadeIn]>
+
+    <div class="not-found-content" [@slideUp]>
+        <div class="error-label">• 404 ERROR. PAGINA NO ENCONTRADA</div>
+
+        <h1 class="main-title">
+            Si estas leyendo<br>
+            este mensaje, algo<br>
+            ha ido terriblemente,<br>
+            terriblemente mal.
+        </h1>
+
+        <button mat-raised-button color="primary" routerLink="/" class="btn-primary">
+            Volver al inicio
+        </button>
+    </div>
+</div>

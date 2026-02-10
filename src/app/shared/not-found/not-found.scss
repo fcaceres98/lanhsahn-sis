@@ -1,0 +1,42 @@
+.not-found-container {
+  min-height: calc(100vh - 180px);
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  padding-left: 5%;
+
+  background-color: #000000;
+  border-radius: 0.5rem;
+
+  background-image: url('/assets/images/404-logo.png');
+    background-repeat: no-repeat;
+    background-position: 80% center;
+    background-size: contain;
+}
+
+.not-found-content {
+  position: relative;
+  max-width: 700px;
+  
+  .error-label {
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+
+        color: #9ca3af;
+  }
+  
+  .main-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    margin: 0 0 3rem 0;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+
+    color: #ffffff;
+  }
+}
