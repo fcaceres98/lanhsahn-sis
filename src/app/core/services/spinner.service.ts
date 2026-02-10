@@ -1,20 +1,29 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class SpinnerService {
-  isLoading = new Subject<boolean>();
+    private activeRequests = signal(0);
+    public isLoading = signal(false);
+  
+    show(): void {
+        this.activeRequests.update(count => count + 1);
+        this.isLoading.set(true);
+    }
 
-  constructor() {
-    this.isLoading.next(false);
-  }
+    hide(): void {
+        this.activeRequests.update(count => {
+            const newCount = Math.max(0, count - 1);
+            if (newCount === 0) {
+                this.isLoading.set(false);
+            }
+            return newCount;
+        });
+    }
 
-  show(): void {
-    this.isLoading.next(true);
-  }
-  hide(): void {
-    this.isLoading.next(false);
-  }
+    reset(): void {
+        this.activeRequests.set(0);
+        this.isLoading.set(false);
+    }
 }
