@@ -1,7 +1,7 @@
 import { Component, signal, OnInit } from '@angular/core';
 
 import { FlexLayoutModule } from 'ngx-flexible-layout';
-import { SimpleNotificationsModule, NotificationsService, NotificationType } from 'angular2-notifications';
+import { NotificationsService, NotificationType } from 'angular2-notifications';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 
@@ -15,16 +15,19 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+import { MatDialogModule, MatDialog, MatDialogConfig } from '@angular/material/dialog';
+
 import { BranchData } from '@src/app/core/models/BranchData';
 import { Branch } from '@src/app/core/models/branch';
 import { BranchesService } from '@src/app/core/services/branches.service';
 import { AuthService, LocalAuth } from '@src/app/core/services/auth.service';
 
+import { NewBranches } from '@src/app/pages/options/branches/new-branches/new-branches';
+
 @Component({
     selector: 'app-list-branches',
     imports: [
         FlexLayoutModule,
-        SimpleNotificationsModule,
         FormsModule,
         ReactiveFormsModule,
 
@@ -36,7 +39,8 @@ import { AuthService, LocalAuth } from '@src/app/core/services/auth.service';
         MatTableModule,
         MatPaginatorModule,
         MatMenuModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatDialogModule
     ],
     templateUrl: './list-branches.html',
     styleUrl: './list-branches.scss',
@@ -60,7 +64,8 @@ export class ListBranches implements OnInit {
     constructor(
         private branchesService: BranchesService,
         private notifications: NotificationsService,
-        private authService: AuthService
+        private authService: AuthService,
+        public dialog: MatDialog
     ) { }
 
     async ngOnInit(): Promise<void> {
@@ -160,7 +165,20 @@ export class ListBranches implements OnInit {
     }
 
     add(): void {
-        console.log("Adding a new branch.");
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = '500px';
+        dialogConfig.height = '535px';
+        
+        const dialogRef = this.dialog.open( NewBranches, dialogConfig );
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.get();
+            }
+        });
     }
 
     show(element: Branch): void {

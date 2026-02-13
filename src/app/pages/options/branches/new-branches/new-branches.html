@@ -1,0 +1,43 @@
+<app-spinner-overlay></app-spinner-overlay>
+<h2 mat-dialog-title>Nuevo Sucursal</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" id="form" fxLayout="column">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name" cdkFocusInitial>
+            @if (form.get('name')?.touched && form.get('name')?.invalid) {
+                <mat-error>{{getErrorMessage('name')}}</mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Dirección</mat-label>
+            <input matInput formControlName="direction">
+            @if (form.get('direction')?.touched && form.get('direction')?.invalid) {
+                <mat-error>{{getErrorMessage('direction')}}</mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="telephone">
+            @if (form.get('telephone')?.touched && form.get('telephone')?.invalid) {
+                <mat-error>{{getErrorMessage('telephone')}}</mat-error>
+            }
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+    @if (!isLoading()) {
+        <button mat-icon-button color="primary" type="submit" form="form">
+            <mat-icon>save</mat-icon>
+        </button>
+        <button mat-icon-button (click)="close(false)">
+            <mat-icon>close</mat-icon>
+        </button>
+    } @else {
+        <mat-spinner diameter="30"></mat-spinner>
+    }
+    </div>
+</mat-dialog-actions>

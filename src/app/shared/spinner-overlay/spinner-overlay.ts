@@ -15,5 +15,4 @@ import { SpinnerService } from '@src/app/core/services/spinner.service';
 export class SpinnerOverlay {
 
     spinnerService = inject(SpinnerService);
-
 }
